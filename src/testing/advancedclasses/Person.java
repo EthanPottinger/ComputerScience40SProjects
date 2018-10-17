@@ -17,7 +17,12 @@ public class Person {
    }
    
    public void talk() {
-       System.out.println("Person " + name + " is " + age + " and maleness is " + isMale);
+       System.out.println(this.toString());
+   }
+   
+   @Override
+   public String toString() {
+       return "Person: name " + name + " age " + age + " Is a male " + isMale;
    }
    
 }
