@@ -6,14 +6,19 @@ package testing.advancedclasses;
  */
 public class Person {
     
-   public String name;
-   private int age;
+   private String name;
+   public int age;
    protected boolean isMale;
       
    public Person() {
        name = "Jeff Moore";
        age = 0;
        isMale = true;
+   }
+   public Person(int age, String name, boolean isMale) {
+       this.name = name;
+       this.age = age;
+       this.isMale = isMale; 
    }
    
    public void talk() {
@@ -23,6 +28,29 @@ public class Person {
    @Override
    public String toString() {
        return "Person: name " + name + " age " + age + " Is a male " + isMale;
+   }
+   
+   @Override
+   public boolean equals(Object object) {
+       Person person = (Person)object;
+       
+       if(this.age != person.age) return false;
+       if(this.isMale != person.isMale) return false;
+       if(!this.name.equals(person.name)) return false;
+       
+       return true;
+   }
+   
+   public String getName() {
+       return name;
+   }
+   public void setName(String name) {
+       this.name = name;
+   }
+   
+   @Override
+   public Person clone() {
+       return new Person(age, name, isMale);
    }
    
 }

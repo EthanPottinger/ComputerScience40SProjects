@@ -14,7 +14,6 @@ public class AdvancedClassesTest {
         
         person.talk();
         
-        secondPerson.name = "Britny Bitch";
         secondPerson.talk();
         
         Student greg = new Student(100);
