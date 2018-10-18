@@ -23,6 +23,20 @@ public class AdvancedClassesTest {
         greg.talk();
         rodrick.talk();
         
+        Object object1 = new Object();
+        Object object2 = new Object();
+        Object object3 = object1;
+        System.out.println(object1.toString());
+        System.out.println(object2.toString());
+        System.out.println(object3.toString());
+        
+        if(object1.equals(object3)) {
+            System.out.println("==");
+        }
+        else {
+            System.out.println("!=");
+        }
+        
         System.out.println("end");
     }
     
