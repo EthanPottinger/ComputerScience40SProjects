@@ -39,4 +39,8 @@ public class Student extends Person {
         return new Student(super.age, super.getName(), super.isMale, studentNumber);
     }
     
+    public String toString() {
+        return super.toString() + "\nstudent number: " + studentNumber;
+    }
+    
 }

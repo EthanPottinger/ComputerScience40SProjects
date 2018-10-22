@@ -41,6 +41,11 @@ public class Person {
        return true;
    }
    
+   @Override
+   public Person clone() {
+       return new Person(age, name, isMale);
+   }
+   
    public String getName() {
        return name;
    }
@@ -48,9 +53,6 @@ public class Person {
        this.name = name;
    }
    
-   @Override
-   public Person clone() {
-       return new Person(age, name, isMale);
-   }
+   
    
 }

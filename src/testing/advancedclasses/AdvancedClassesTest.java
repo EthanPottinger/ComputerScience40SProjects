@@ -36,7 +36,24 @@ public class AdvancedClassesTest {
             System.out.println("!=");
         }
         
+        Student jeffMoore = new Student(21, "Jeff Moore", true, 21);
+        Student janko = new Student(22, "Janko Jones", true, 22);
+        
+        System.out.println(jeffMoore.toString());
+        System.out.println(janko.toString());
+        
+        Student bob = jeffMoore.clone();
+        
+        System.out.println(bob.toString());
+        
+        if(jeffMoore.equals(bob)) System.out.println("=====");
+        if(!janko.equals(bob)) System.out.println("!========");
+        
         System.out.println("end");
     }
+    
+    
+    
+    
     
 }
