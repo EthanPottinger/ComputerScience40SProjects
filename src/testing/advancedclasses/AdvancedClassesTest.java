@@ -49,6 +49,13 @@ public class AdvancedClassesTest {
         if(jeffMoore.equals(bob)) System.out.println("=====");
         if(!janko.equals(bob)) System.out.println("!========");
         
+        Teacher wachs = new Teacher("Mr. Wachs");
+        wachs.addStudent(greg);
+        wachs.addStudent(rodrick);
+        wachs.addStudent(jeffMoore);
+        wachs.addStudent(janko);
+        wachs.addStudent(bob);
+        System.out.println(wachs.toString());
         System.out.println("end");
     }
     
