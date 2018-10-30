@@ -54,5 +54,10 @@ public class Person {
    }
    
    
+   public static void endOfTheWorld() {
+       System.out.println("boom! tetris for jeff");
+   }
+   
+   
    
 }

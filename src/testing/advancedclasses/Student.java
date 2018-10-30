@@ -7,15 +7,18 @@ package testing.advancedclasses;
 public class Student extends Person {
 
     private int studentNumber;
+    public static int totalStudents;
     
     public Student(int StudentNumber) {
         super();
         this.studentNumber = StudentNumber;
         this.isMale = true;
+        totalStudents++;
     }
     public Student(int age, String name, boolean isMale, int studentNumber) {
         super(age, name, isMale);
         this.studentNumber = studentNumber;
+        totalStudents++;
     }
     
     @Override
@@ -35,6 +38,7 @@ public class Student extends Person {
         return super.equals(student);
     }
     
+    @Override
     public Student clone() {
         return new Student(super.age, super.getName(), super.isMale, studentNumber);
     }

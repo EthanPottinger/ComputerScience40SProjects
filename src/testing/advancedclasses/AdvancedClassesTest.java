@@ -57,6 +57,39 @@ public class AdvancedClassesTest {
         wachs.addStudent(bob);
         System.out.println(wachs.toString());
         System.out.println("end");
+        
+        checkStatus(person);
+        System.out.println("\n");
+        checkStatus(greg);
+        System.out.println("\n");
+        checkStatus(object1);
+        System.out.println("\n");
+        checkStatus(wachs);
+        System.out.println("\n");
+        
+        char[] word = {'w', 'o', 'r', 'd'};
+        
+        String string = new String(word);
+        checkStatus(word);
+        
+        System.out.println(Student.totalStudents);
+        Student.endOfTheWorld();
+    }
+
+    private void checkStatus(Object object) {
+        
+        
+        
+        if(object instanceof Student) System.out.println("Have a student");
+        
+        else if(object instanceof Teacher) System.out.println("Have a teacher");
+        
+        else if(object instanceof String) System.out.println("Have a string");
+        
+        else if(object instanceof Person) System.out.println("Have a person");
+        
+        else System.out.println("What the fuck?");
+        
     }
     
     
