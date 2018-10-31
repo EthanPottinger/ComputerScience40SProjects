@@ -73,12 +73,31 @@ public class AdvancedClassesTest {
         checkStatus(word);
         
         System.out.println(Student.totalStudents);
-        Student.endOfTheWorld();
+        Person.endOfTheWorld();
+        
+        Phantom phantom = new Phantom(14, "Danny Phantom", true);
+        Poltergeist geist = new Poltergeist(50, "Geist Fieri", true);
+        Haunted haunted = new Haunted();
+        Husky husky = new Husky(17, "Sweaty Thai", false, 6969);
+        MrWachs mrWachs = new MrWachs("MrWachs");
+        phantom.talk();
+        geist.talk();
+        System.out.println(haunted.toString());
+        husky.talk();
+        mrWachs.talk();
+        
+        Meeting meeting = new Meeting();
+        meeting.attends(person);
+        meeting.attends(geist);
+        meeting.attends(greg);
+        meeting.attends(jeffMoore);
+        meeting.attends(phantom);
+        meeting.attends(mrWachs);
+        meeting.attends(husky);
+        meeting.hold();
     }
 
     private void checkStatus(Object object) {
-        
-        
         
         if(object instanceof Student) System.out.println("Have a student");
         
@@ -88,7 +107,7 @@ public class AdvancedClassesTest {
         
         else if(object instanceof Person) System.out.println("Have a person");
         
-        else System.out.println("What the fuck?");
+        else System.out.println("What the fork?");
         
     }
     
