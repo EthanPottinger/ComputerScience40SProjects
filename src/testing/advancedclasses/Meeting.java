@@ -31,7 +31,17 @@ public class Meeting {
     }
     
     public void hold() {
-        System.out.println("whats up, warning, there are " + Student.totalStudents + " Students here today");
+        System.out.println("whats up, warning, there are " + Student.totalStudents + " Students here today");        
+        
+        //Enhanced for-loop
+        for (Person member : members) {
+            //"for every member in members"
+            if(member != null) {
+                member.talk();
+                if(member instanceof MrWachs) System.out.println("SILENCE PLEBIANS");
+            }
+            
+        }
         
         System.out.println("smell ya later");
     }
