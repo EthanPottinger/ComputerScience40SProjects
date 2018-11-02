@@ -95,6 +95,18 @@ public class AdvancedClassesTest {
         meeting.attends(mrWachs);
         meeting.attends(husky);
         meeting.hold();
+        
+        Prilosec prilosec = new Prilosec();
+        Wanton wanton = new Wanton();
+        IceCream iceCream = new IceCream();
+        Spaghetti spaghetti = new Spaghetti();
+        Nerds nerds = new Nerds();
+        geist.consume(prilosec);
+        phantom.consume(iceCream);
+        mrWachs.consume(wanton);
+        husky.consume(spaghetti);
+        jeffMoore.consume(nerds);
+        jeffMoore.consume(new Prilosec());
     }
 
     private void checkStatus(Object object) {

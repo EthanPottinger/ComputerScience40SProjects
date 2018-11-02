@@ -57,7 +57,10 @@ public class Person {
    public static void endOfTheWorld() {
        System.out.println("boom! tetris for jeff");
    }
-   
+   public void consume(Food food) {
+       if(food.shouldCook()) food.eat();
+       else food.spoil();
+   }
    
    
 }
