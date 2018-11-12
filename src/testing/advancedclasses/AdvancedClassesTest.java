@@ -93,17 +93,17 @@ public class AdvancedClassesTest {
         meeting.attends(jeffMoore);
         meeting.attends(phantom);
         meeting.attends(mrWachs);
-//        meeting.attends(husky);
+        meeting.attends(husky);
         meeting.hold();
         
 //        Prilosec prilosec = new Prilosec();
-        Wanton wanton = new Wanton();
+//        Wanton wanton = new Wanton();
 //        IceCream iceCream = new IceCream();
 //        Spaghetti spaghetti = new Spaghetti();
 //        Nerds nerds = new Nerds();
 //        geist.consume(prilosec);
 //        phantom.consume(iceCream);
-        mrWachs.consume(wanton);
+//        mrWachs.consume(wanton);
 //        husky.consume(spaghetti);
 //        jeffMoore.consume(nerds);
 //        jeffMoore.consume(new Prilosec());
