@@ -93,17 +93,17 @@ public class AdvancedClassesTest {
         meeting.attends(jeffMoore);
         meeting.attends(phantom);
         meeting.attends(mrWachs);
-        meeting.attends(husky);
+//        meeting.attends(husky);
         meeting.hold();
         
 //        Prilosec prilosec = new Prilosec();
-//        Wanton wanton = new Wanton();
+        Wanton wanton = new Wanton();
 //        IceCream iceCream = new IceCream();
 //        Spaghetti spaghetti = new Spaghetti();
 //        Nerds nerds = new Nerds();
 //        geist.consume(prilosec);
 //        phantom.consume(iceCream);
-//        mrWachs.consume(wanton);
+        mrWachs.consume(wanton);
 //        husky.consume(spaghetti);
 //        jeffMoore.consume(nerds);
 //        jeffMoore.consume(new Prilosec());
@@ -116,6 +116,31 @@ public class AdvancedClassesTest {
         zihen.results();
         zihen.play(1, 3);
         zihen.end(1);
+        
+        int x = 69;
+        
+        output(person);
+        output(zihen);
+        output(mrWachs);
+        output(new String("Yeet"));
+        output(x);
+        
+        Box<Poltergeist> box1 = new Box<>();
+        Box<Athlete> box2 = new Box<>();
+        Box<MrWachs> box3 = new Box<>();
+        box1.wrap(geist);
+        box2.wrap(zihen);
+        box3.wrap(mrWachs);
+        box1.peek();
+        box2.peek();
+        box3.peek();
+        
+        Character letter = new Character('T');
+        Person[] people = {geist, phantom, mrWachs};
+        
+        Home house = new Home(person, people);
+        house.visit();
+        
     }
 
     private void checkStatus(Object object) {
@@ -130,6 +155,11 @@ public class AdvancedClassesTest {
         
         else System.out.println("What the fork?");
         
+    }
+
+    private static <T> void output(T item) {
+        String text = "Class " + item.getClass().getSimpleName() + " As a String = " + item.toString();
+        System.out.println(text);
     }
     
     
