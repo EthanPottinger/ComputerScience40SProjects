@@ -57,5 +57,39 @@ public class LinkedList<T> {
         }
         length++;
     }
+    public void addBack(T data) {
+        Node<T> node = new Node<>(data);
+        if(isEmpty()) head = tail = node;
+        else {
+            node.previous = tail;
+            tail.next = node;
+            tail = node;
+        }
+        length++;
+    }
+    private boolean inRange(int index) {
+        if(isEmpty()) return false;
+        else if(index < 0) return false;
+        else if(index >= length) return false;
+        return true;
+    }
+    protected Node getFirstNode() {
+        return head;
+    }
+    protected Node getLastNode() {
+        return tail;
+    }
+    protected Node getNode(int index) {
+        if(inRange(index) == false) return null;
+        else if(index == 0) return getFirstNode();
+        else if(index == length - 1) return getLastNode();
+        else {
+            Node current = head;
+            for(int i = 0; i < index; i++) {
+                current = current.next;
+            }
+            return current;
+        }
+    }
 
 }
