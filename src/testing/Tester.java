@@ -1,6 +1,7 @@
 package testing;
 
 import testing.advancedclasses.*;
+import testing.collections.*;
 
 /**
  *
@@ -11,7 +12,11 @@ public class Tester {
     public Tester() {
         System.out.println("Testing started");
         
-        AdvancedClassesTest test = new AdvancedClassesTest();
+//        RecursionTest unit1 = new RecursionTest();
+      
+//        AdvancedClassesTest unit2 = new AdvancedClassesTest();
+        
+        CollectionsTest unit3 = new CollectionsTest();
         
         System.out.println("Testing ended");
     }

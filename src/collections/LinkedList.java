@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-package testing.collections;
+package collections;
 
 /**
  * LinkedList.java - 
@@ -24,17 +18,37 @@ public class LinkedList<T> {
 
     @Override
     public String toString() {
-        return "LinkedList " + super.toString();
+        if(isEmpty()) return "Empty List";
+        else {
+            String text = "[";
+            Node current = head;
+            while(current.next != null) {
+                text += current + ", ";
+                current = current.next;
+            }
+            return text + current + "]";
+        }
     }
    
-    @Override
-    public boolean equals(Object object) {
-        return super.equals(object);
+    public boolean equals(LinkedList list) {
+        if(this.size() != list.size()) return false;
+        Node current1 = this.head;
+        Node current2 = list.getFirstNode();
+        while(current1 != null) {
+            if(current1.equals(current2) == false) return false;
+            current1 = current1.next;
+            current2 = current2.next;
+        }
+        return true;
     }
     
     @Override
     public LinkedList clone() {
-        return this;
+        LinkedList<T> list = new LinkedList<>();
+        for(int i = 0; i < length; i++) {
+            list.addBack((T)this.getNode(i).data);
+        }
+        return list;
     }
     @Override
     public final void finalize() {
@@ -89,6 +103,39 @@ public class LinkedList<T> {
                 current = current.next;
             }
             return current;
+        }
+    }
+    public T get(int index) {
+        if(inRange(index) == false) return null;
+        else return (T)getNode(index).data;
+    }
+    public boolean set(int index, T data) {
+        Node current = getNode(index);
+        if(current == null) return false;
+        else {
+            current.data = data;
+            return true;
+        }
+    }
+    public T front() {
+        return get(0);
+    }
+    public T back() {
+        return get(length - 1);
+    }
+    public T removeFront() {
+        if(isEmpty()) return null;
+        else {
+            T data = (T)head.data;
+            if(length == 1) finalize();
+            else {
+                head = head.next;
+                head.previous.next = null;
+                head.previous = null;
+                length--;
+                System.gc();
+            }
+            return data;
         }
     }
 

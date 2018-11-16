@@ -15,7 +15,9 @@ package testing.collections;
 public class CollectionsTest {
 
     public CollectionsTest() {
+        System.out.println("collections test started...\n");
         
+        System.out.println("\n...collections test done.");
     }
 
     
