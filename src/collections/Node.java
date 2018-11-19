@@ -15,11 +15,9 @@ package collections;
 public class Node<T> {
     
     public T data;
-    
     public Node next;
-    
     public Node previous;
-
+    
     public Node(T data, Node next, Node previous) {
         this.data = data;
         this.next = next;
@@ -40,8 +38,10 @@ public class Node<T> {
         return data.toString();
     }
    
-    public boolean equals(Node node) {
-        return node.data.equals(this.data);
+    @Override
+    public boolean equals(Object object) {
+        Node node = (Node)object;
+        return this.data.equals(node.data);
     }
     
     @Override
