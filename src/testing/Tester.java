@@ -14,9 +14,9 @@ public class Tester {
         
 //        RecursionTest unit1 = new RecursionTest();
       
-//        AdvancedClassesTest unit2 = new AdvancedClassesTest();
+        AdvancedClassesTest unit2 = new AdvancedClassesTest();
         
-        CollectionsTest unit3 = new CollectionsTest();
+//        CollectionsTest unit3 = new CollectionsTest();
         
         System.out.println("Testing ended");
     }

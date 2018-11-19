@@ -96,17 +96,17 @@ public class AdvancedClassesTest {
         meeting.attends(husky);
         meeting.hold();
         
-//        Prilosec prilosec = new Prilosec();
-//        Wanton wanton = new Wanton();
-//        IceCream iceCream = new IceCream();
-//        Spaghetti spaghetti = new Spaghetti();
-//        Nerds nerds = new Nerds();
-//        geist.consume(prilosec);
-//        phantom.consume(iceCream);
-//        mrWachs.consume(wanton);
-//        husky.consume(spaghetti);
-//        jeffMoore.consume(nerds);
-//        jeffMoore.consume(new Prilosec());
+        Prilosec prilosec = new Prilosec();
+        Wanton wanton = new Wanton();
+        IceCream iceCream = new IceCream();
+        Spaghetti spaghetti = new Spaghetti();
+        Nerds nerds = new Nerds();
+        geist.consume(prilosec);
+        phantom.consume(iceCream);
+        mrWachs.consume(wanton);
+        husky.consume(spaghetti);
+        jeffMoore.consume(nerds);
+        jeffMoore.consume(new Prilosec());
 
         Athlete zihen = new Athlete(17, "Zihen Googuo", true, 0);
         zihen.setPlayer("Crusher99");

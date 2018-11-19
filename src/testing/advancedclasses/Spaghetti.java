@@ -1,7 +1,3 @@
-
-import testing.advancedclasses.Food;
-
-/*
 package testing.advancedclasses;
 
 /**
