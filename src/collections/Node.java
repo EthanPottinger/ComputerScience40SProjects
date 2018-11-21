@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package collections;
 
 /**
@@ -35,6 +29,7 @@ public class Node<T> {
 
     @Override
     public String toString() {
+        if(data == null) return "Fcuk";
         return data.toString();
     }
    
@@ -52,6 +47,7 @@ public class Node<T> {
     public void finalize() {
         data = null;
         next = previous = null;
+        System.gc();
     }
 
 }

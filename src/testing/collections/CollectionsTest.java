@@ -20,7 +20,13 @@ public class CollectionsTest {
         Node<Long> n3 = new Node<>(99l, n2, n1);
         
         System.out.println(n1.toString());
-        
+        System.out.println(n2.toString());
+        System.out.println(n3.toString());
+        n1.finalize();
+        System.out.println(n1.toString());
+        Node<Long> n4 = n3.clone();
+        System.out.println(n4.toString());
+        System.out.println(n3.equals(n4));
         System.out.println("\n...collections test done.");
     }
 
