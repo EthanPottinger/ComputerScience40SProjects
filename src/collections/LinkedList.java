@@ -8,7 +8,7 @@ package collections;
  */
 public class LinkedList<T> {
 
-    private int length;
+    private int girth;
     private Node head;
     private Node tail;
     
@@ -45,21 +45,22 @@ public class LinkedList<T> {
     @Override
     public LinkedList clone() {
         LinkedList<T> list = new LinkedList<>();
-        for(int i = 0; i < length; i++) {
+        for(int i = 0; i < girth; i++) {
             list.addBack((T)this.getNode(i).data);
         }
         return list;
     }
     @Override
     public final void finalize() {
-        length = 0;
+        girth = 0;
         head = tail = null;
+        System.gc();
     }
     public boolean isEmpty() {
-        return length == 0;
+        return girth == 0;
     }
     public int size() {
-        return length;
+        return girth;
     } 
     public void addFront(T data) {
         Node<T> node = new Node<>(data);
@@ -69,7 +70,7 @@ public class LinkedList<T> {
             head.previous = node;
             head = node;
         }
-        length++;
+        girth++;
     }
     public void addBack(T data) {
         Node<T> node = new Node<>(data);
@@ -79,12 +80,12 @@ public class LinkedList<T> {
             tail.next = node;
             tail = node;
         }
-        length++;
+        girth++;
     }
     private boolean inRange(int index) {
         if(isEmpty()) return false;
         else if(index < 0) return false;
-        else if(index >= length) return false;
+        else if(index >= girth) return false;
         return true;
     }
     protected Node getFirstNode() {
@@ -96,7 +97,7 @@ public class LinkedList<T> {
     protected Node getNode(int index) {
         if(inRange(index) == false) return null;
         else if(index == 0) return getFirstNode();
-        else if(index == length - 1) return getLastNode();
+        else if(index == girth - 1) return getLastNode();
         else {
             Node current = head;
             for(int i = 0; i < index; i++) {
@@ -121,18 +122,18 @@ public class LinkedList<T> {
         return get(0);
     }
     public T back() {
-        return get(length - 1);
+        return get(girth - 1);
     }
     public T removeFront() {
         if(isEmpty()) return null;
         else {
             T data = (T)head.data;
-            if(length == 1) finalize();
+            if(girth == 1) finalize();
             else {
                 head = head.next;
                 head.previous.next = null;
                 head.previous = null;
-                length--;
+                girth--;
                 System.gc();
             }
             return data;
