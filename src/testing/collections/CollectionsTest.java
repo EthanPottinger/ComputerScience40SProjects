@@ -1,5 +1,6 @@
 package testing.collections;
 
+import collections.LinkedList;
 import collections.Node;
 
 /**
@@ -27,7 +28,20 @@ public class CollectionsTest {
         Node<Long> n4 = n3.clone();
         System.out.println(n4.toString());
         System.out.println(n3.equals(n4));
+        
+        LinkedList<String> list = new LinkedList<>();
+
+        System.out.println(list.isEmpty());
+        
+        System.out.println(list.size());
+        
+        list.addBack("Sexy");
+        list.addBack("Attention");
+        list.addBack("Sans");
+        
         System.out.println("\n...collections test done.");
+        
+        
     }
 
     
