@@ -19,6 +19,9 @@ public class CollectionsTest {
         n1.next = n2;
         n2.previous = n1;
         Node<Long> n3 = new Node<>(99l, n2, n1);
+        Integer[] beep = {1, 2, 3, 4};
+        
+        Node<Integer[]> boop = new Node<>(beep);
         
         System.out.println(n1.toString());
         System.out.println(n2.toString());
@@ -38,6 +41,10 @@ public class CollectionsTest {
         list.addBack("Sexy");
         list.addBack("Attention");
         list.addBack("Sans");
+        
+        list.addFront("UnderTale");
+        list.addFront("Frisk");
+        list.addFront("Papyrus");
         
         System.out.println("\n...collections test done.");
         
