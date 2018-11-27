@@ -62,7 +62,8 @@ public class LinkedList<T> {
     public int size() {
         return girth;
     } 
-    public void addFront(T data) {
+    public boolean addFront(T data) {
+        if(data == null) return false;
         Node<T> node = new Node<>(data);
         if(isEmpty()) head = tail = node;
         else {
@@ -71,8 +72,10 @@ public class LinkedList<T> {
             head = node;
         }
         girth++;
+        return true;
     }
-    public void addBack(T data) {
+    public boolean addBack(T data) {
+        if(data == null) return false;
         Node<T> node = new Node<>(data);
         if(isEmpty()) head = tail = node;
         else {
@@ -81,6 +84,7 @@ public class LinkedList<T> {
             tail = node;
         }
         girth++;
+        return true;
     }
     private boolean inRange(int index) {
         if(isEmpty()) return false;
