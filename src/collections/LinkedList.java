@@ -88,8 +88,8 @@ public class LinkedList<T> {
     }
     private boolean inRange(int index) {
         if(isEmpty()) return false;
-        else if(index < 0) return false;
-        else if(index >= girth) return false;
+        if(index < 0) return false;
+        if(index >= girth) return false;
         return true;
     }
     protected Node getFirstNode() {
@@ -99,28 +99,24 @@ public class LinkedList<T> {
         return tail;
     }
     protected Node getNode(int index) {
-        if(inRange(index) == false) return null;
-        else if(index == 0) return getFirstNode();
-        else if(index == girth - 1) return getLastNode();
-        else {
-            Node current = head;
-            for(int i = 0; i < index; i++) {
-                current = current.next;
-            }
-            return current;
+        if(!inRange(index)) return null;
+        if(index == 0) return getFirstNode();
+        if(index == girth - 1) return getLastNode();
+        Node current = head;
+        for(int i = 0; i < index; i++) {
+            current = current.next;
         }
+        return current;
     }
     public T get(int index) {
-        if(inRange(index) == false) return null;
-        else return (T)getNode(index).data;
+        if(!inRange(index)) return null;
+        return (T)getNode(index).data;
     }
     public boolean set(int index, T data) {
         Node current = getNode(index);
         if(current == null) return false;
-        else {
-            current.data = data;
-            return true;
-        }
+        current.data = data;
+        return true;
     }
     public T front() {
         return get(0);
@@ -141,6 +137,147 @@ public class LinkedList<T> {
                 System.gc();
             }
             return data;
+        }
+    }
+    public T removeBack() {
+        if(isEmpty()) return null;
+        else {
+            T data = (T)tail.data;
+            if(girth == 1) finalize();
+            else {
+                tail = tail.previous;
+                tail.next.previous = null;
+                tail.next = null;
+                girth--;
+                System.gc();
+            }
+            return data;
+        }
+    }
+    public boolean contains(T data) {
+        Node current = head;
+        while(current != null) {
+            if(current.data.equals(data)) {
+                return true;
+            }
+            current = current.next;
+        }
+        return false;
+    }
+    public boolean addAfter(T data, int index) {
+        if(inRange(index) == false) return false;
+        else {
+            if(index == girth - 1) addBack(data);
+            else {
+                Node<T> node = new Node<>(data);
+                Node current = getNode(index);
+                node.next = current.next;
+                current.next.previous = node;
+                current.next = node;
+                node.previous = current;
+                girth++;
+            }
+            return true;
+        }
+    }
+    public boolean addBefore(T data, int index) {
+        if(inRange(index) == false) return false;
+        else {
+            if(index == girth - 1) addBack(data);
+            else {
+                Node<T> node = new Node<>(data);
+                Node current = getNode(index);
+                node.previous = current.previous;
+                current.previous.next = node;
+                current.previous = node;
+                node.next = current;
+                girth++;
+            }
+            return true;
+        }
+    }
+    public void add(T data) {
+        addBack(data);
+    }
+    public void add(int index, T data) {
+        addAfter(data, index);
+    }
+    public T remove(int index) {
+        if(inRange(index)) {
+            if(index == 0) return removeFront();
+            else if(index == girth - 1) return removeBack();
+            else {
+                Node current = getNode(index);
+                current.previous.next = current.next;
+                current.next.previous = current.previous;
+                current.next = current.previous = null;
+                girth--;
+                return (T) current.data;
+            }
+        }
+        return null;
+    }
+    public int firstIndexOf(T data) {
+        Node current = head;
+        int index = 0;
+        while(current != null) {
+            if(current.data.equals(data)) {
+                return index;
+            }
+            current = current.next;
+            index++;
+        }
+        return -1;
+    } 
+    public int lastIndexOf(T data) {
+        Node current = tail;
+        int index = girth- 1;
+        while(current != null) {
+            if(current.data.equals(data)) {
+                return index;
+            }
+            current = current.previous;
+            index++;
+        }
+        return -1;
+    }
+    public boolean remove(T data) {
+        if(data == null) return false;
+        int index = firstIndexOf(data);
+        if(index == -1) return false;
+        remove(index);
+        return true;
+    }
+    public boolean removeLast(T data) {
+        if(data == null) return false;
+        int index = lastIndexOf(data);
+        if(index == -1) return false;
+        remove(index);
+        return true;
+    }
+    public void removeAll(T data) {
+        while(contains(data)) {
+            remove(data);
+        }
+    }
+    public void removeAll(T[] items) {
+        for(int i = 0; i < items.length - 1; i++) {
+            removeAll(items[i]);
+        }
+    }
+    public void clear() {
+        Node current = head;
+        while(current != null) {
+            Node next = current.next;
+            current.finalize();
+            current = next;
+        }
+        finalize();
+    }
+    public void retainAll(T[] itemsToRetain) {
+        clear();
+        for(int i = 0; i < itemsToRetain.length; i++) {
+            add(itemsToRetain[i]);
         }
     }
 
