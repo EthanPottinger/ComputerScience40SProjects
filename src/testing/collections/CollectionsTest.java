@@ -32,19 +32,25 @@ public class CollectionsTest {
         System.out.println(n4.toString());
         System.out.println(n3.equals(n4));
         
-        LinkedList<String> list = new LinkedList<>();
+        LinkedList<Integer> list = new LinkedList<>();
 
         System.out.println(list.isEmpty());
         
         System.out.println(list.size());
         
-        list.addBack("Sexy");
-        list.addBack("Attention");
-        list.addBack("Sans");
+        list.addBack(4);
+        list.addBack(5);
+        list.addBack(6);
         
-        list.addFront("UnderTale");
-        list.addFront("Frisk");
-        list.addFront("Papyrus");
+        list.addFront(3);
+        list.addFront(2);
+        list.addFront(1);
+        
+        String yote = "";
+        for(int i = 0; i < list.size(); i++) {
+            yote += list.get(i) + ", ";
+        }
+        System.out.println(yote);
         
         System.out.println("\n...collections test done.");
         

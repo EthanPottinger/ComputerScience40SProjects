@@ -1,5 +1,7 @@
 package collections;
 
+import java.lang.reflect.Array;
+
 /**
  * LinkedList.java - 
  * 
@@ -15,7 +17,12 @@ public class LinkedList<T> {
     public LinkedList() {
         finalize();
     }
-
+    public LinkedList(T[] array) {
+        fromArray(array);
+    }
+    public LinkedList(LinkedList list) {
+        fromLinkedList(list);
+    }
     @Override
     public String toString() {
         if(isEmpty()) return "Empty List";
@@ -279,6 +286,78 @@ public class LinkedList<T> {
         for(int i = 0; i < itemsToRetain.length; i++) {
             add(itemsToRetain[i]);
         }
+    }
+    public boolean containsAll(T[] items) {
+        if(items == null) return false;
+        if(items.length == 0) return false;
+        for(int i = 0; i < items.length; i++) {
+            if(!contains(items[i])) return false;
+        }
+        return true;
+    }
+    public int numberOf(T data) {
+        int count = 0;
+        Node current = head;
+        while(current != null) {
+            if(current.data.equals(data)) count++;
+            current = current.next;
+        }
+        return count;
+    }
+    public void addAll(LinkedList list) {
+        for(int i = 0; i < list.size(); i++) {
+            this.add((T)list.get(i));
+        }
+    }
+    public void addAll(LinkedList list, int index) {
+        for(int i = 0; i < list.size(); i++) {
+            this.addAfter((T)list.get(i), index);
+            index++;
+        }
+    }
+    public LinkedList subList(int from, int to) {
+        if(!inRange(from) || !inRange(to)) return null;
+        LinkedList<T> list = new LinkedList<>();
+        for(int i = from; i <= to; i++) {
+            list.add(this.get(i));
+        }
+        return list;
+    }
+    public int[] addIndices(T data) {
+        if(!contains(data)) return null;
+        String values = "";
+        int index = 0;
+        Node current = head;
+        while(current != null) {
+            if(current.data.equals(data)) values += index + ",";
+            index++;
+            current = current.next;
+        }
+        String[] array = values.split("[,]");
+        int[] indices = new int[array.length];
+        for(int i = 0; i < array.length; i++) {
+            indices[i] = Integer.parseInt(array[i]);
+        }
+        return indices;
+    }
+    public final void fromArray(T[] array) {
+        finalize();
+        for(int i = 0; i < array.length; i++) {
+            add(array[i]);
+        }
+    }
+    public final void fromLinkedList(LinkedList list) {
+        finalize();
+        for(int i = 0; i < list.size(); i++) {
+            add((T)list.get(i));
+        }
+    }
+    public T[] toArray(T[] data) {
+        data = (T[])Array.newInstance(data.getClass().getComponentType(), girth);
+        for(int i = 0; i < girth; i++) {
+            data[i] = get(i);
+        }
+        return data;
     }
 
 }
