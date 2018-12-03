@@ -37,12 +37,14 @@ public class LinkedList<T> {
         }
     }
    
-    public boolean equals(LinkedList list) {
-        if(this.size() != list.size()) return false;
+    @Override
+    public boolean equals(Object object) {
+        LinkedList<T> that = (LinkedList<T>)object;
+        if(this.size() != that.size()) return false;
         Node current1 = this.head;
-        Node current2 = list.getFirstNode();
+        Node current2 = that.getFirstNode();
         while(current1 != null) {
-            if(current1.equals(current2) == false) return false;
+            if(!current1.equals(current2)) return false;
             current1 = current1.next;
             current2 = current2.next;
         }
@@ -133,18 +135,16 @@ public class LinkedList<T> {
     }
     public T removeFront() {
         if(isEmpty()) return null;
+        T data = (T)head.data;
+        if(girth == 1) finalize();
         else {
-            T data = (T)head.data;
-            if(girth == 1) finalize();
-            else {
-                head = head.next;
-                head.previous.next = null;
-                head.previous = null;
-                girth--;
-                System.gc();
-            }
-            return data;
+            head = head.next;
+            head.previous.next = null;
+            head.previous = null;
+            girth--;
+            System.gc();
         }
+        return data;
     }
     public T removeBack() {
         if(isEmpty()) return null;

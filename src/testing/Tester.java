@@ -2,6 +2,7 @@ package testing;
 
 import testing.advancedclasses.*;
 import testing.collections.*;
+import testing.assignments.*;
 
 /**
  *
@@ -17,6 +18,8 @@ public class Tester {
 //        AdvancedClassesTest unit2 = new AdvancedClassesTest();
         
         CollectionsTest unit3 = new CollectionsTest();
+        
+//        CribbageTest crip = new CribbageTest();
         
         System.out.println("Testing ended");
     }

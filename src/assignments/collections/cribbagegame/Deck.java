@@ -14,16 +14,19 @@ public class Deck {
     
     public Deck() {
         cards = new LinkedList<>();
-        for(int i = 1; i < 52; i++) {
-            cards.addFront(new Card(i));
+        for(int i = 1; i <= 52; i++) {
+            cards.addBack(new Card(i));
         }
     }
     public Card draw() {
-        Card card = new Card();
-        while(!cards.contains(card)) {
-            card = cards.get(GlobalMethods.randInt(1, 52));
-        }
+        int index = GlobalMethods.randInt(1, cards.size());
+        Card card = cards.get(index);
+        cards.remove(index);
         return card;
+    }
+    
+    public void returnCard(Card card) {
+        
     }
     
 }

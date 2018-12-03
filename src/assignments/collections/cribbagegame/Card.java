@@ -16,8 +16,10 @@ public class Card {
     public Card(int card) {
         this.card = card;
     }
-    public boolean equals(Card card) {
-        return this.card == card.getCard();
+    @Override
+    public boolean equals(Object object) {
+        Card that = (Card)object;
+        return this.card == that.getCard();
     }
     public int getCard() {
         return card;

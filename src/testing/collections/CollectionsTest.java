@@ -44,13 +44,11 @@ public class CollectionsTest {
         
         list.addFront(3);
         list.addFront(2);
-        list.addFront(1);
+        list.addFront(1);    
+        System.out.println(list);
+        System.out.println(list.removeFront());
+        System.out.println(list);
         
-        String yote = "";
-        for(int i = 0; i < list.size(); i++) {
-            yote += list.get(i) + ", ";
-        }
-        System.out.println(yote);
         
         System.out.println("\n...collections test done.");
         
