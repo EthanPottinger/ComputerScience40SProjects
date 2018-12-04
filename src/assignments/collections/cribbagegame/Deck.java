@@ -11,7 +11,7 @@ public class Deck {
     
     public static final int MAX = 52;
 
-    private int cardCount;
+    private static int cardCount;
     
     private Card[] cards;
             
@@ -49,6 +49,24 @@ public class Deck {
         cards[index] = null;
         cardCount--;
         return card;
+    }
+    public Card drawCard(Card card) {
+        if(cardCount == 0) return null;
+        for(int i = 0; i < MAX; i++) {
+            if(card.equals(cards[i])) {
+                cards[i] = null;
+                cardCount--;
+                return card;
+            }
+        }
+        return null;
+    }
+    public boolean inDeck(Card card) {
+        if(card == null) return false;
+        for (int i = 0; i < MAX; i++) {
+            if(card.equals(cards[i])) return true;
+        }
+        return false;
     }
     public boolean returnCard(Card card) {
         int index = card.value() + (card.suitIndex() * 13) - 1;
