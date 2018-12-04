@@ -1,6 +1,5 @@
 package assignments.collections.cribbagegame;
 
-import collections.LinkedList;
 import globalmethods.GlobalMethods;
 /**
  * Deck.java - 
@@ -9,24 +8,54 @@ import globalmethods.GlobalMethods;
  * @since 30-Nov-2018
  */
 public class Deck {
-
-    LinkedList<Card> cards;
     
+    public static final int MAX = 52;
+
+    private int cardCount;
+    
+    private Card[] cards;
+            
     public Deck() {
-        cards = new LinkedList<>();
-        for(int i = 1; i <= 52; i++) {
-            cards.addBack(new Card(i));
+        cardCount = MAX;
+        cards = new Card[MAX];
+        for(int i = 0; i < MAX; i++) {
+            cards[i] = new Card((i % 13) + 1, Card.SUITS[(int)(i / 13)]); 
         }
     }
-    public Card draw() {
-        int index = GlobalMethods.randInt(1, cards.size());
-        Card card = cards.get(index);
-        cards.remove(index);
+    @Override
+    public String toString() {
+        String deck = "[";
+        for(int i = 0; i < MAX - 1; i++) {
+            deck += cards[i] + ", ";
+        }
+        return deck + cards[MAX - 1] + "]";
+    }
+    public Card draw(int index) {
+        if(cards[index] == null) return null;
+        Card card = cards[index].clone();
+        cards[index] = null;
+        cardCount--;
         return card;
     }
-    
-    public void returnCard(Card card) {
-        
+    public Card drawRandom() {
+        if(cardCount == 0) return null;
+        Card card = new Card();
+        int index = 0;
+        do {
+            index = GlobalMethods.randInt(0, MAX - 1);
+            card = cards[index];
+        }
+        while(card == null);
+        cards[index] = null;
+        cardCount--;
+        return card;
+    }
+    public boolean returnCard(Card card) {
+        int index = card.value() + (card.suitIndex() * 13) - 1;
+        if(cards[index] != null) return false;
+        cards[index] = card.clone();
+        cardCount++;
+        return true;
     }
     
 }

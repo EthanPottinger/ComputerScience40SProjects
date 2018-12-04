@@ -1,10 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package testing.assignments;
+import assignments.collections.cribbagegame.*;
 
 /**
  * CribbageTest.java - 
@@ -17,7 +12,13 @@ public class CribbageTest {
     public CribbageTest() {
         System.out.println("Cribbage test starts...\n\n");
         
+        Deck deck = new Deck();
+        System.out.println(deck);
         
+        for(int i = 0; i < 56; i++) {
+            System.out.println(deck.drawRandom());
+            System.out.println(deck);
+        }
         
         System.out.println("\n\n...Cribbage test ends");
     }
