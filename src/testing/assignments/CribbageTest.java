@@ -12,12 +12,20 @@ public class CribbageTest {
     public CribbageTest() {
         System.out.println("Cribbage test starts...\n\n");
 
-        System.out.println(Hand.deck);
+        Hand hand  = new Hand();
         
-        System.out.println(new Hand(4));
-        System.out.println(Hand.deck);
-        System.out.println(new Hand(4));
-        System.out.println(Hand.deck);
+        for (int i = 0; i < 56; i++) {
+            hand.draw();
+            System.out.println(hand);
+            System.out.println(Hand.deck);
+            System.out.println("\n\n");
+        }
+        for (int i = 0; i < 56; i++) {
+            hand.returnCard(i);
+            System.out.println(hand);
+            System.out.println(Hand.deck);
+            System.out.println("\n\n");
+        }
         
         System.out.println("\n\n...Cribbage test ends");
     }

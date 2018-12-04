@@ -62,18 +62,19 @@ public class Deck {
         return null;
     }
     public boolean inDeck(Card card) {
-        if(card == null) return false;
         for (int i = 0; i < MAX; i++) {
             if(card.equals(cards[i])) return true;
         }
         return false;
     }
     public boolean returnCard(Card card) {
-        int index = card.value() + (card.suitIndex() * 13) - 1;
-        if(cards[index] != null) return false;
-        cards[index] = card.clone();
-        cardCount++;
-        return true;
+        if(card != null && !inDeck(card)) {
+            int index = card.value() + (card.suitIndex() * 13) - 1;
+            cards[index] = card.clone();
+            cardCount++;
+            return true;
+        }
+        return false;
     }
     
 }

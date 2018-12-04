@@ -38,13 +38,15 @@ public class Card {
     @Override
     public boolean equals(Object object) {
         Card that = (Card)object;
+        if(that == null) return false;
         if(this.value() != that.value()) return false;
         if(!this.suit().equals(that.suit())) return false;
         return true;
     }
     @Override
     public Card clone() {
-        return new Card(value, suit);
+        if(this != null) return new Card(value, suit);
+        return null;
     }
     public int value() {
         return value;
