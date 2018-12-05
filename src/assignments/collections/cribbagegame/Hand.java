@@ -32,6 +32,9 @@ public class Hand {
     public String toString() {
         return cards.toString();
     }
+    public Card getCard(int index) {
+        return cards.get(index);
+    }
     public boolean draw() {
         return cards.addBack(deck.drawRandom());
     }
@@ -39,10 +42,13 @@ public class Hand {
         return cards.addBack(deck.drawCard(card));
     }
     public boolean returnCard(Card card) {
+        cards.remove(card);
         return deck.returnCard(card);
     }
     public boolean returnCard(int index) {
-        return deck.returnCard(cards.get(index));
+        Card card = cards.get(index);
+        cards.remove(index);
+        return deck.returnCard(card);
     }
     
 }

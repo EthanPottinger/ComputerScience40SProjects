@@ -14,18 +14,12 @@ public class CribbageTest {
 
         Hand hand  = new Hand();
         
-        for (int i = 0; i < 56; i++) {
-            hand.draw();
-            System.out.println(hand);
-            System.out.println(Hand.deck);
-            System.out.println("\n\n");
-        }
-        for (int i = 0; i < 56; i++) {
-            hand.returnCard(i);
-            System.out.println(hand);
-            System.out.println(Hand.deck);
-            System.out.println("\n\n");
-        }
+        hand.draw();
+        System.out.println(hand);
+        System.out.println(Hand.deck);
+        hand.returnCard(hand.getCard(0));
+        System.out.println(hand);
+        System.out.println(hand.deck);
         
         System.out.println("\n\n...Cribbage test ends");
     }
