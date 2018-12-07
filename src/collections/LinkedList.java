@@ -10,6 +10,8 @@ import java.lang.reflect.Array;
  */
 public class LinkedList<T> {
 
+    public static final int NOT_FOUND = -1;
+    
     private int length;
     private Node head;
     private Node tail;
@@ -205,19 +207,16 @@ public class LinkedList<T> {
         return addAfter(data, index);
     }
     public T remove(int index) {
-        if(inRange(index)) {
-            if(index == 0) return removeFront();
-            else if(index == length - 1) return removeBack();
-            else {
-                Node current = getNode(index);
-                current.previous.next = current.next;
-                current.next.previous = current.previous;
-                current.next = current.previous = null;
-                length--;
-                return (T) current.data;
-            }
-        }
-        return null;
+        if(inRange(index)) return null;
+        if(index == 0) return removeFront();
+        else if(index == length - 1) return removeBack();
+        Node current = getNode(index);
+        current.previous.next = current.next;
+        current.next.previous = current.previous;
+        current.next = current.previous = null;
+        length--;
+        System.gc();
+        return (T)current.data;
     }
     public int firstIndexOf(T data) {
         Node current = head;
@@ -229,43 +228,39 @@ public class LinkedList<T> {
             current = current.next;
             index++;
         }
-        return -1;
+        return NOT_FOUND;
     } 
     public int lastIndexOf(T data) {
         Node current = tail;
-        int index = length- 1;
+        int index = length - 1;
         while(current != null) {
             if(current.data.equals(data)) {
                 return index;
             }
             current = current.previous;
-            index++;
+            index--;
         }
-        return -1;
+        return NOT_FOUND;
     }
     public boolean remove(T data) {
         if(data == null) return false;
         int index = firstIndexOf(data);
-        if(index == -1) return false;
+        if(index == NOT_FOUND) return false;
         remove(index);
         return true;
     }
     public boolean removeLast(T data) {
         if(data == null) return false;
         int index = lastIndexOf(data);
-        if(index == -1) return false;
+        if(index == NOT_FOUND) return false;
         remove(index);
         return true;
     }
     public void removeAll(T data) {
-        while(contains(data)) {
-            remove(data);
-        }
+        while(contains(data)) remove(data);
     }
     public void removeAll(T[] items) {
-        for(int i = 0; i < items.length - 1; i++) {
-            removeAll(items[i]);
-        }
+        for(T item : items) removeAll(item);
     }
     public void clear() {
         Node current = head;
@@ -299,19 +294,27 @@ public class LinkedList<T> {
         }
         return count;
     }
-    public void addAll(LinkedList list) {
-        for(int i = 0; i < list.size(); i++) {
-            this.add((T)list.get(i));
-        }
+    public void addAll(T[] items) {
+        for (T item : items) add(item); 
     }
+    public void addAll(LinkedList list) {
+        for(int i = 0; i < list.size(); i++) add((T)list.get(i));
+    }
+    
     public void addAll(LinkedList list, int index) {
         for(int i = 0; i < list.size(); i++) {
-            this.addAfter((T)list.get(i), index);
+            addAfter((T)list.get(i), index);
+            index++;
+        }
+    }
+    public void addAll(T[] items, int index) {
+        for(T item : items) {
+            add(item);
             index++;
         }
     }
     public LinkedList subList(int from, int to) {
-        if(!inRange(from) || !inRange(to)) return null;
+        if(!inRange(from) || !inRange(to) || from > to) return null;
         LinkedList<T> list = new LinkedList<>();
         for(int i = from; i <= to; i++) {
             list.add(this.get(i));

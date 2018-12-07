@@ -1,5 +1,6 @@
 package globalmethods;
 
+import collections.LinkedList;
 import javax.swing.JOptionPane;
 
 /**
@@ -152,4 +153,5 @@ public class GlobalMethods {
         while(valid == false);
         return choice.toString();
     }
+    
 }

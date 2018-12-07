@@ -1,4 +1,4 @@
-package assignments.collections.cribbagegame;
+package cardtoolkit;
 
 /**
  * Card.java - 

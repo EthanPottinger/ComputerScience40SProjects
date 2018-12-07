@@ -1,4 +1,4 @@
-package assignments.collections.cribbagegame;
+package cardtoolkit;
 
 import globalmethods.GlobalMethods;
 /**
@@ -75,6 +75,9 @@ public class Deck {
             return true;
         }
         return false;
+    }
+    public int getCount() {
+        return cardCount;
     }
     
 }

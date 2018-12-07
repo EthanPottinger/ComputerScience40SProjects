@@ -1,4 +1,4 @@
-package assignments.collections.cribbagegame;
+package cardtoolkit;
 
 import collections.LinkedList;
 
@@ -32,6 +32,9 @@ public class Hand {
     public String toString() {
         return cards.toString();
     }
+    public int size() {
+        return cards.size();
+    }
     public Card getCard(int index) {
         return cards.get(index);
     }
@@ -46,9 +49,7 @@ public class Hand {
         return deck.returnCard(card);
     }
     public boolean returnCard(int index) {
-        Card card = cards.get(index);
-        cards.remove(index);
-        return deck.returnCard(card);
+        return returnCard(getCard(index));
     }
     
 }
