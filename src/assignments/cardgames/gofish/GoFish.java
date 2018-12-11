@@ -12,18 +12,31 @@ import globalmethods.GlobalMethods;
  */
 public class GoFish {
 
+    private Hand player1;
+    private Hand player2;
+    private int player1Score = 0;
+    private int player2Score = 0;
+    
     public GoFish() {
-        
-        Hand player1 = new Hand(7);
-        Hand player2 = new Hand(7);
-        int player1Score = 0;
-        int player2Score = 0;
-        
-        while(Hand.deck.getCount() != 0) {
-            
+        drawCards(player1);
+        drawCards(player2);
+        while(Hand.deck.getCount() != 0 && player1.size() != 0 && player2.size() != 0) {
+            if(player1.size() != 0) goPlayer1();
+            if(player2.size() != 0) goPlayer2();
         }
     }
-    public void go(Hand player) {
+    public void goPlayer1() {
+        String dialog = player1.toString() + "\n\nGot any...?";
+        String type = GlobalMethods.choose(dialog, "Go Fish", getTypes(player1));
+        if(player2.containsType(type)) {
+            player2.returnCard(player2.firstIndex(type));
+            player1.returnCard(player1.firstIndex(type));
+            player1Score += 2;
+        }
+    }
+    public void goPlayer2() {
+        String dialog = player2.toString() + "\n\nGot any...?";
+        String type = GlobalMethods.choose(dialog, "Go Fish", getTypes(player2));
     }
     public<T> boolean contains(T[] array, T data) {
         boolean contains = false;
@@ -40,6 +53,21 @@ public class GoFish {
             }
         }
         return list;
+    }
+    public void goFish(Hand player) {
+        player.draw();
+    }
+    public void drawCards(Hand player) {
+        player = new Hand(7);
+        for(int i = 0; i < player.size(); i++) {
+            if(player.containsType(player.getCard(i).type()) && player.firstIndex(player.getCard(i).type()) != i) {
+                player.returnCard(player.firstIndex(player.getCard(i).type()));
+                player.returnCard(player.firstIndex(player.getCard(i).type()));
+                player.draw();
+                player.draw();
+                i = 0;
+            }
+        }
     }
     
 }

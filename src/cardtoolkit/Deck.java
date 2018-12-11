@@ -70,7 +70,7 @@ public class Deck {
     public boolean returnCard(Card card) {
         if(card != null && !inDeck(card)) {
             int index = card.value() + (card.suitIndex() * 13) - 1;
-            cards[index] = card.clone();
+            cards[index] = card;
             cardCount++;
             return true;
         }

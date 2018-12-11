@@ -322,33 +322,29 @@ public class LinkedList<T> {
         return list;
     }
     public int[] addIndices(T data) {
+        if(data == null) return null;
         if(!contains(data)) return null;
-        String values = "";
-        int index = 0;
+        int size = numberOf(data);
+        int[] array = new int[size];
         Node current = head;
-        while(current != null) {
-            if(current.data.equals(data)) values += index + ",";
-            index++;
+        int counter = 0;
+        for (int i = 0; i < length; i++) {
+            if(current.data.equals(data)) {
+                array[counter] = i;
+                counter++;
+                if(counter >= size) return array;
+            }
             current = current.next;
         }
-        String[] array = values.split("[,]");
-        int[] indices = new int[array.length];
-        for(int i = 0; i < array.length; i++) {
-            indices[i] = Integer.parseInt(array[i]);
-        }
-        return indices;
+        return array;
     }
     public final void fromArray(T[] array) {
         finalize();
-        for(int i = 0; i < array.length; i++) {
-            add(array[i]);
-        }
+        for(T data : array) add(data);
     }
     public final void fromLinkedList(LinkedList list) {
         finalize();
-        for(int i = 0; i < list.size(); i++) {
-            add((T)list.get(i));
-        }
+        for(int i = 0; i < list.size(); i++) add((T)list.get(i));
     }
     public T[] toArray(T[] data) {
         data = (T[])Array.newInstance(data.getClass().getComponentType(), length);

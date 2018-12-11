@@ -154,4 +154,23 @@ public class GlobalMethods {
         return choice.toString();
     }
     
+    public static String choose(String dialog, String title, LinkedList<String> options) {
+        String[] array = new String[0];
+        array = options.toArray(array);
+        boolean valid = true;
+        String error = "";
+        Object choice = "";
+        do {
+            valid = true;
+            choice = JOptionPane.showInputDialog(null, error + dialog, title,
+                    JOptionPane.PLAIN_MESSAGE, null, array, array[0]);
+            if(choice == null) {
+                valid = false;
+                error = "Please input a value!\n\n";
+            }
+        }
+        while(valid == false);
+        return choice.toString();
+    }
+    
 }

@@ -32,6 +32,9 @@ public class Hand {
     public String toString() {
         return cards.toString();
     }
+    public LinkedList getCards() {
+        return cards;
+    }
     public int size() {
         return cards.size();
     }
@@ -41,7 +44,7 @@ public class Hand {
     public boolean draw() {
         return cards.addBack(deck.drawRandom());
     }
-    public boolean draw(Card card) {
+    public boolean draw(Card card) { 
         return cards.addBack(deck.drawCard(card));
     }
     public boolean returnCard(Card card) {
@@ -50,6 +53,18 @@ public class Hand {
     }
     public boolean returnCard(int index) {
         return returnCard(getCard(index));
+    }
+    public boolean containsType(String type) {
+        for(int i = 0; i < cards.size(); i++) {
+            if(cards.get(i).type().equals(type)) return true;
+        }
+        return false;
+    }
+    public int firstIndex(String type) {
+        for(int i = 0; i < cards.size(); i++) {
+            if(cards.get(i).type().equals(type)) return i;
+        }
+        return -1;
     }
     
 }

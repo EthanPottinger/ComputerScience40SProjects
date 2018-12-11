@@ -1,5 +1,6 @@
 package testing;
 
+import assignments.cardgames.gofish.GoFish;
 import testing.advancedclasses.*;
 import testing.collections.*;
 
@@ -17,6 +18,8 @@ public class Tester {
 //        AdvancedClassesTest unit2 = new AdvancedClassesTest();
         
 //        CollectionsTest unit3 = new CollectionsTest();
+
+        GoFish game = new GoFish();
         
         System.out.println("Testing ended");
     }
