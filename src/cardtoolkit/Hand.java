@@ -48,11 +48,14 @@ public class Hand {
         return cards.addBack(deck.drawCard(card));
     }
     public boolean returnCard(Card card) {
-        cards.remove(card);
-        return deck.returnCard(card);
+        deck.returnCard(card);
+        return cards.remove(card);
     }
     public boolean returnCard(int index) {
         return returnCard(getCard(index));
+    }
+    public boolean returnCard(String type) {
+        return returnCard(firstIndex(type));
     }
     public boolean containsType(String type) {
         for(int i = 0; i < cards.size(); i++) {
