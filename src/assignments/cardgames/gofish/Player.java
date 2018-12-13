@@ -16,14 +16,15 @@ public class Player {
         hand = new Hand(7);
         System.out.println(hand);
         for(int i = 0; i < hand.size(); i++) {
-            if(hand.containsType(hand.getCard(i).type()) && hand.firstIndex(hand.getCard(i).type()) != i) {
+            System.out.println(hand.firstIndex(hand.getCard(i).type()));
+            if(hand.firstIndex(hand.getCard(i).type()) != i) {
                 System.out.println(i);
+//                System.out.println(hand);
+                hand.returnCard(i);
                 System.out.println(hand);
-                System.out.println(hand.returnCard(hand.getCard(i).type()));
-                System.out.println(hand);
-                System.out.println(hand.returnCard(hand.getCard(i).type()));
-                System.out.println(hand);
-                i = 0;
+                hand.returnCard(hand.firstIndex(hand.getCard(i).type()));
+//                System.out.println(hand);
+                i = -1;
             }
         }
     }

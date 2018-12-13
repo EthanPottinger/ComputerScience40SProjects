@@ -51,11 +51,12 @@ public class Hand {
         deck.returnCard(card);
         return cards.remove(card);
     }
-    public boolean returnCard(int index) {
-        return returnCard(getCard(index));
+    public void returnCard(int index) {
+        cards.remove(index);
     }
-    public boolean returnCard(String type) {
-        return returnCard(firstIndex(type));
+    public void returnCard(String type) {
+        int index = firstIndex(type);
+        if(index != -1) returnCard(index);
     }
     public boolean containsType(String type) {
         for(int i = 0; i < cards.size(); i++) {

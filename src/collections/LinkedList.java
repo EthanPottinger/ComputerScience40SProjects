@@ -207,7 +207,7 @@ public class LinkedList<T> {
         return addAfter(data, index);
     }
     public T remove(int index) {
-        if(inRange(index)) return null;
+        if(!inRange(index)) return null;
         if(index == 0) return removeFront();
         else if(index == length - 1) return removeBack();
         Node current = getNode(index);
