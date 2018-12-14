@@ -12,24 +12,86 @@ import globalmethods.GlobalMethods;
  */
 public class GoFish {
 
-    private Player player1;
-    private Player player2;
+    private Player player;
+    private Player opponent;
     
     public GoFish() {
         boolean stillPlaying1 = true;
         boolean stillPlaying2 = true;
-        player1 = new Player();
-        player2 = new Player();
-//        while(stillPlaying1 || stillPlaying2) {
-//            if(player1.getHand().size() != 0) goPlayer1();
-//            else stillPlaying1 = false;
-//            if(player2.getHand().size() != 0) goPlayer2();
-//            else stillPlaying2 = false;
-//        }
+        player = new Player();
+        opponent = new Player();
+        System.out.println(player.getHand());
+        System.out.println(opponent.getHand());
+        while(stillPlaying1 || stillPlaying2) {
+            if(player.getHand().size() != 0) goPlayer1();
+            else if(Hand.deck.getCount() != 0){
+                for(int i = 0; i < 7; i++) {
+                    player.goFish();
+                }
+            }
+            else stillPlaying1 = false;
+            System.out.println(player.getHand());
+            if(opponent.getHand().size() != 0) goPlayer2();
+            else if(Hand.deck.getCount() != 0){
+                for(int i = 0; i < 7; i++) {
+                    opponent.goFish();
+                }
+            }
+            else stillPlaying2 = false;
+            System.out.println(opponent.getHand());
+        }
     }
     public void goPlayer1() {
+        boolean stillPlaying = true;
+        while(stillPlaying) {
+            String choice = player.chooseCard("Player");
+            if(opponent.getHand().containsType(choice)) {
+                player.returnCard(choice);
+                opponent.returnCard(choice);
+                player.increaseScore(2);
+                System.out.println("has a ");
+            }
+            else {
+                System.out.println("does not have a ");
+                Card card = player.goFish();
+                GlobalMethods.output("Go Fish!\n\nYou got a..." + card);
+                if(card.type().equals(choice)) {
+                    player.returnCard(choice);
+                    player.returnCard(choice);
+                    player.increaseScore(2);
+                }
+                else {
+                    System.out.println("FUCK");
+                    stillPlaying = false;
+                }
+            }
+        }
     }
     public void goPlayer2() {
+        boolean stillPlaying = true;
+        while(stillPlaying) {
+            String choice = opponent.chooseCard("Player");
+            if(player.getHand().containsType(choice)) {
+                player.returnCard(choice);
+                opponent.returnCard(choice);
+                player.increaseScore(2);
+                System.out.println("has a ");
+            }
+            else {
+                System.out.println("does not have a ");
+                Card card = opponent.goFish();
+                GlobalMethods.output("Go Fish!\n\nYou got a..." + card);
+                if(card.type().equals(choice)) {
+                    opponent.returnCard(choice);
+                    opponent.returnCard(choice);
+                    opponent.increaseScore(2);
+                }
+                else {
+                    System.out.println("FUCK");
+                    stillPlaying = false;
+                }
+            }
+        }
     }
     public<T> boolean contains(T[] array, T data) {
         boolean contains = false;
@@ -37,18 +99,6 @@ public class GoFish {
             if(array[i] == data) contains = true;
         }
         return contains;
-    }
-    public LinkedList<String> getTypes(Hand player) {
-        LinkedList<String> list = new LinkedList<>();
-        for(int i = 0; i < player.size(); i++) {
-            if(!list.contains(player.getCard(i).type())) {
-                list.add(player.getCard(i).type());
-            }
-        }
-        return list;
-    }
-    public void goFish(Hand player) {
-        player.draw();
     }
     
 }

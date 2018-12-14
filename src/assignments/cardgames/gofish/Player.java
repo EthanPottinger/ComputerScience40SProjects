@@ -1,6 +1,8 @@
 package assignments.cardgames.gofish;
 
 import cardtoolkit.*;
+import collections.*;
+import globalmethods.*;
 /**
  * Player.java - 
  * 
@@ -14,16 +16,12 @@ public class Player {
     
     public Player() {
         hand = new Hand(7);
-        System.out.println(hand);
         for(int i = 0; i < hand.size(); i++) {
-            System.out.println(hand.firstIndex(hand.getCard(i).type()));
             if(hand.firstIndex(hand.getCard(i).type()) != i) {
-                System.out.println(i);
-//                System.out.println(hand);
-                hand.returnCard(i);
-                System.out.println(hand);
-                hand.returnCard(hand.firstIndex(hand.getCard(i).type()));
-//                System.out.println(hand);
+                String type = hand.getCard(i).type();
+                hand.returnCard(type);
+                hand.returnCard(type);
+                score += 2;
                 i = -1;
             }
         }
@@ -31,5 +29,28 @@ public class Player {
     public Hand getHand() {
         return hand;
     }
+    public String chooseCard(String title) {
+        return GlobalMethods.choose("Your Hand: " + hand + "\nYour Score: " + score + "\nGot any...?", title, getTypes());
+    }
+    public LinkedList<String> getTypes() {
+        LinkedList<String> list = new LinkedList<>();
+        for(int i = 0; i < hand.size(); i++) {
+            if(!list.contains(hand.getCard(i).type())) {
+                list.add(hand.getCard(i).type());
+            }
+        }
+        return list;
+    }
+    public Card goFish() {
+        return hand.draw();
+    }
+    public void returnCard(String type) {
+        if(hand.containsType(type)) {
+            hand.returnCard(type);
+        }
+    }
+    public void increaseScore(int increase) {
+        score += increase;
+    } 
 
 }

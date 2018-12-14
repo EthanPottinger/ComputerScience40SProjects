@@ -41,8 +41,10 @@ public class Hand {
     public Card getCard(int index) {
         return cards.get(index);
     }
-    public boolean draw() {
-        return cards.addBack(deck.drawRandom());
+    public Card draw() {
+        Card card = deck.drawRandom();
+        cards.addBack(card);
+        return card;
     }
     public boolean draw(Card card) { 
         return cards.addBack(deck.drawCard(card));
