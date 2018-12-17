@@ -1,8 +1,9 @@
 package testing;
 
-import assignments.cardgames.gofish.GoFish;
-import testing.advancedclasses.*;
-import testing.collections.*;
+//import assignments.cardgames.cribbage.*;
+//import testing.advancedclasses.*;
+//import testing.collections.*;
+import testing.example.*;
 
 /**
  *
@@ -19,7 +20,7 @@ public class Tester {
         
 //        CollectionsTest unit3 = new CollectionsTest();
 
-        GoFish game = new GoFish();
+        ExampleTester example = new ExampleTester();
         
         System.out.println("Testing ended");
     }

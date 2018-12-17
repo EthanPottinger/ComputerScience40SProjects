@@ -60,6 +60,12 @@ public class Card {
         }
         return -1;
     }
+    public int typeIndex() {
+        for(int i = 0; i < TYPES.length; i++) {
+            if(TYPES[i].equals(type)) return i;
+        }
+        return -1;
+    }
     public String type() {
         return type;
     }
