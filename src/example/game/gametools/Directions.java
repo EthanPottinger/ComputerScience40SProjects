@@ -1,4 +1,4 @@
-package example.game;
+package example.game.gametools;
 
 /**
  * Directions.java - 
