@@ -1,7 +1,7 @@
 package assignments.cardgames.cribbage;
 
 import cardtoolkit.*;
-import collections.LinkedList;
+import globalmethods.*;
 
 /**
  * Player.java - 
@@ -17,6 +17,9 @@ public class Player {
     public Player() {
         hand = new Hand();
         score = 0;
+    }
+    public Hand getHand() {
+        return hand;
     }
     public Card draw() {
         return hand.draw();
@@ -53,20 +56,20 @@ public class Player {
         }
         return array;
     }
-    public int sort() {
+    public int[] sort() {
         int[] array = getTypeIndicies();
-        return 69;
-    }
-    public static int minimum(int[] array) {
-        return minimum(array, array.length - 1, array[0]);
-    }
-    private static int minimum(int[] array, int i, int min) {
-
-        if(array[i] < min) min = array[i];
-
-        if(i == 0) return min;
-        
-        else return minimum(array, i - 1, min);
+        int[] sort = new int[array.length];
+        final int DONE = GlobalMethods.maximum(array) + 1;
+        System.out.println(DONE);
+        GlobalMethods.outputArray(array);
+        for(int i = 0; i < array.length; i++) {
+            sort[GlobalMethods.minimumIndex(array)] = GlobalMethods.minimum(array);
+            GlobalMethods.outputArray(sort);
+            System.out.println(GlobalMethods.minimumIndex(array));
+            array[GlobalMethods.minimumIndex(array)] = DONE; 
+            GlobalMethods.outputArray(array);
+        }
+        return sort;
     }
     
 }

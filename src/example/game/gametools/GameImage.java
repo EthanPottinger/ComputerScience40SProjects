@@ -1,5 +1,7 @@
 package example.game.gametools;
 
+import javax.swing.*;
+
 /**
  * GameImage.java - 
  * 
@@ -8,6 +10,10 @@ package example.game.gametools;
  */
 public class GameImage {
 
+    private JLabel image;
     
+    public GameImage(JLabel image) {
+        this.image = image;
+    }
 
 }

@@ -1,9 +1,6 @@
 package testing;
 
-//import assignments.cardgames.cribbage.*;
-//import testing.advancedclasses.*;
-//import testing.collections.*;
-import testing.example.*;
+import testing.assignments.AssignmentTest;
 
 /**
  *
@@ -20,7 +17,7 @@ public class Tester {
         
 //        CollectionsTest unit3 = new CollectionsTest();
 
-        ExampleTester example = new ExampleTester();
+        AssignmentTest stuff = new AssignmentTest();
         
         System.out.println("Testing ended");
     }

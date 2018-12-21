@@ -137,6 +137,52 @@ public class GlobalMethods {
         JOptionPane.showMessageDialog(null, text);
     }
     
+    public static int minimum(int[] array) {
+        return minimum(array, array.length - 1, array[0]);
+    }
+    private static int minimum(int[] array, int i, int min) {
+        if(array[i] < min) min = array[i];
+        if(i == 0) return min;       
+        else return minimum(array, i - 1, min);
+    }
+    
+    public static int maximum(int[] array) {
+        return maximum(array, array.length - 1, 0);
+    }
+    private static int maximum(int[] array, int i, int max) {
+        if(array[i] > max) max = array[i];
+        if(i == 0) return max;
+        else return maximum(array, i - 1, max);
+    }
+    public static int minimumIndex(int[] array) {
+        return minimumIndex(array, array.length - 1, array.length - 1, array[0]);
+    }
+    private static int minimumIndex(int[] array, int i, int minIndex, int min) {
+        if(array[i] < min) {
+            minIndex = i;
+            min = array[i];
+        }
+        if(i == 0) return minIndex;       
+        else return minimumIndex(array, i - 1, minIndex, min);
+    }
+    
+    public static int maximumIndex(int[] array) {
+        return maximumIndex(array, array.length - 1, 0);
+    }
+    private static int maximumIndex(int[] array, int i, int maxIndex) {
+        if(array[i] > maxIndex) maxIndex = i;
+        if(i == 0) return maxIndex;
+        else return maximumIndex(array, i - 1, maxIndex);
+    }
+    
+    public static void outputArray(int[] array) {
+        String sad = "";
+        for(int i = 0; i < array.length; i++) {
+            sad += array[i] + ", ";
+        }
+        System.out.println(sad);
+    }
+    
     public static String choose(String dialog, String title, String[] options) {
         boolean valid = true;
         String error = "";

@@ -9,7 +9,7 @@ package example.game;
 public class Game {
 
     public Game() {
-        System.out.println("game here...");
+        new UI();
     }
 
 }
