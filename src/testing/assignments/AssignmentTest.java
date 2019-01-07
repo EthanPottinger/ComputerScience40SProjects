@@ -1,6 +1,7 @@
 package testing.assignments;
 
 import assignments.cardgames.cribbage.*;
+import globalmethods.GlobalMethods;
 
 /**
  * AssignmentTest.java - 
@@ -12,11 +13,10 @@ public class AssignmentTest {
 
     public AssignmentTest() {
         Player player = new Player();
-        for(int i = 0; i < 10; i++) {
+        for(int i = 0; i < 6; i++) {
             player.draw();
         }
-        player.getTypeIndicies();
-        player.sort();
+        player.runScore();
     }
     
 }

@@ -147,7 +147,7 @@ public class GlobalMethods {
     }
     
     public static int maximum(int[] array) {
-        return maximum(array, array.length - 1, 0);
+        return maximum(array, array.length - 1, array[0]);
     }
     private static int maximum(int[] array, int i, int max) {
         if(array[i] > max) max = array[i];
@@ -155,7 +155,7 @@ public class GlobalMethods {
         else return maximum(array, i - 1, max);
     }
     public static int minimumIndex(int[] array) {
-        return minimumIndex(array, array.length - 1, array.length - 1, array[0]);
+        return minimumIndex(array, array.length - 1, 0, array[0]);
     }
     private static int minimumIndex(int[] array, int i, int minIndex, int min) {
         if(array[i] < min) {
@@ -167,12 +167,15 @@ public class GlobalMethods {
     }
     
     public static int maximumIndex(int[] array) {
-        return maximumIndex(array, array.length - 1, 0);
+        return maximumIndex(array, array.length - 1, 0, array[0]);
     }
-    private static int maximumIndex(int[] array, int i, int maxIndex) {
-        if(array[i] > maxIndex) maxIndex = i;
-        if(i == 0) return maxIndex;
-        else return maximumIndex(array, i - 1, maxIndex);
+    private static int maximumIndex(int[] array, int i, int maxIndex, int max) {
+        if(array[i] > max) {
+            maxIndex = i;
+            max = array[i];
+        }
+        if(i == 0) return maxIndex;       
+        else return minimumIndex(array, i - 1, maxIndex, max);
     }
     
     public static void outputArray(int[] array) {
@@ -181,6 +184,16 @@ public class GlobalMethods {
             sad += array[i] + ", ";
         }
         System.out.println(sad);
+    }
+    
+    public static int[] sort(int[] array) {
+        int[] sort = new int[array.length];
+        final int DONE = maximum(array) + 1;
+        for(int i = 0; i < array.length; i++) {
+            sort[i] = minimum(array);
+            array[minimumIndex(array)] = DONE; 
+        }
+        return sort;
     }
     
     public static String choose(String dialog, String title, String[] options) {
