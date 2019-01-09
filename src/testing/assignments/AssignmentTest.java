@@ -16,7 +16,8 @@ public class AssignmentTest {
         for(int i = 0; i < 6; i++) {
             player.draw();
         }
-        player.runScore();
+        System.out.println(player.getHand());
+        System.out.println(player.runScore());;
     }
     
 }

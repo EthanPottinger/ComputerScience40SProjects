@@ -47,19 +47,24 @@ public class Player {
         return pairs;
     }
     public int runScore() {
-        int[] sort = GlobalMethods.sort(getTypeIndicies());
-        int runScore = 1;
+        int[] sort = GlobalMethods.sort(getTypes());
+        GlobalMethods.outputArray(sort);
+        int score = 0;
+        int run = 1;
         int multiplier = 1;
+        int multipliersMultiplier = 1;
         for(int i = 0; i < sort.length - 1; i++) {
-            if(sort[i] == sort[i + 1] + 1) runScore++;
-            else if(sort[i] == sort[i + 1]) {
-                multiplier++;
+            if(sort[i] + 1 == sort[i + 1]) {
+                run++;
+                multiplier *= multipliersMultiplier;
+                multipliersMultiplier = 1;
             }
-            else runScore = 0;
+            else if(sort[i] == sort[i + 1]) multipliersMultiplier++;
         }
-        return 243;
+        if(run >= 3) return run *= multiplier;
+        return 0;
     }
-    public int[] getTypeIndicies() {
+    public int[] getTypes() {
         int[] array = new int[hand.size()];
         for(int i = 0; i < hand.size(); i++) {
             array[i] = hand.getCard(i).value();
