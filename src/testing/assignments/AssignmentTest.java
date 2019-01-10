@@ -1,6 +1,7 @@
 package testing.assignments;
 
 import assignments.cardgames.cribbage.*;
+import cardtoolkit.*;
 import globalmethods.GlobalMethods;
 
 /**
@@ -12,12 +13,7 @@ import globalmethods.GlobalMethods;
 public class AssignmentTest {
 
     public AssignmentTest() {
-        Player player = new Player();
-        for(int i = 0; i < 6; i++) {
-            player.draw();
-        }
-        System.out.println(player.getHand());
-        System.out.println(player.runScore());;
+        
     }
     
 }
