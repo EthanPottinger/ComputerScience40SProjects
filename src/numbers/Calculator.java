@@ -22,5 +22,8 @@ public class Calculator {
         //recursive case 2
         else return base * power(base, exp - 1);
     }
+    public static int choose(int n, int r) {
+        return (int) (factorial(n) / (factorial(r) * factorial(n - r)));
+    }
     
 }
