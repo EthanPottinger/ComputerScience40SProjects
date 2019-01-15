@@ -13,18 +13,18 @@ import collections.LinkedList;
 public class Player {
     
     private Hand hand;
-    private int score;
+    private int scoreTotal;
 
     public Player() {
         hand = new Hand();
-        score = 0;
+        scoreTotal = 0;
     }
     public Player(int cardAmount) {
         hand = new Hand();
         for(int i = 0; i < cardAmount; i++) {
             draw();
         }
-        score = 0;
+        scoreTotal = 0;
     }
     public Hand getHand() {
         return hand;
@@ -49,10 +49,13 @@ public class Player {
         return countPairs()*2 + runScore() + countFifteens()*2 + flush();
     }
     public int getScore(Card cut) {
-        int score = countPairs()*2 + runScore() + countFifteens()*2 + flush();
+        hand.draw(cut);
+        int score = countPairs()*2 + runScore() + countFifteens()*2;
+        if(flush() >= 5) score += flush();
         for (int i = 0; i < hand.size(); i++) {
             if(hand.getCard(i).suit().equals(cut.suit()) && hand.getCard(i).type().equals(Card.TYPES[10])) score++;
         }
+        hand.returnCard(cut);
         return score;
     }
     public int countPairs() {
@@ -222,6 +225,9 @@ public class Player {
             num += list.get(i);
         }
         return num;
+    }
+    public void addScore(int score) {
+        scoreTotal += score;
     }
     
 }
