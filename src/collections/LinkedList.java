@@ -16,9 +16,18 @@ public class LinkedList<T> {
     private Node head;
     private Node tail;
     
+    /**
+     * Constructor for the LinkedList sets length to 0 with no data 
+     */
     public LinkedList() {
         finalize();
     }
+    
+    /**
+     * Constructor for the LinkedList, creates a LinkedList using an array 
+     * 
+     * @param array 
+     */
     public LinkedList(T[] array) {
         fromArray(array);
     }
