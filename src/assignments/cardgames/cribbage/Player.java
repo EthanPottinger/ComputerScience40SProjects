@@ -35,9 +35,17 @@ public class Player {
     public boolean draw(Card card) {
         return hand.draw(card);
     }
+    public void returnCard(int index) {
+        hand.returnCard(index);
+    }
     public Card giveCard(Player player, Card card) {
         hand.returnCard(card);
         player.draw(card);
+        return card;
+    }
+    public Card giveCard(Hand hand, Card card) {
+        this.hand.returnCard(card);
+        hand.draw(card);
         return card;
     }
     public void returnCards() {
