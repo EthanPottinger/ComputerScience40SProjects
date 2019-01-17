@@ -26,14 +26,26 @@ public class LinkedList<T> {
     /**
      * Constructor for the LinkedList, creates a LinkedList using an array 
      * 
-     * @param array 
+     * @param array The array to be turned into a LinkedList
      */
     public LinkedList(T[] array) {
         fromArray(array);
     }
+    
+    /**
+     * Creates a LinkedList using a LinkedList
+     * 
+     * @param list The LinkedList to be turned into a LinkedList
+     */
     public LinkedList(LinkedList list) {
         fromLinkedList(list);
     }
+    
+    /**
+     * Converts the LinkedList into a string
+     * 
+     * @return The LinkedList as a sting formatted as [data1.toString(), data2.toString(),...,dataN.toString()]
+     */
     @Override
     public String toString() {
         if(isEmpty()) return "Empty List";
@@ -45,6 +57,13 @@ public class LinkedList<T> {
         }
         return text + current + "]";
     }
+    
+    /**
+     * Checks if the size and all the data are equal
+     * 
+     * @param object The object to check
+     * @return If the size and all the data are equal
+     */
     @Override
     public boolean equals(Object object) {
         LinkedList<T> that = (LinkedList<T>)object;
@@ -59,6 +78,11 @@ public class LinkedList<T> {
         return true;
     }
     
+    /**
+     * Makes a clone of the LinkedList with all the same data
+     * 
+     * @return The clone of the LinkedList
+     */
     @Override
     public LinkedList clone() {
         LinkedList<T> list = new LinkedList<>();
@@ -67,18 +91,41 @@ public class LinkedList<T> {
         }
         return list;
     }
+    
+    /**
+     * Sets length to 0 and all data null
+     */
     @Override
     public final void finalize() {
         length = 0;
         head = tail = null;
         System.gc();
     }
+    
+    /**
+     * Returns if the LinkedList is empty
+     * 
+     * @return If the LinkedList is empty
+     */
     public boolean isEmpty() {
         return length == 0;
     }
+    
+    /**
+     * Gives the size of the LinkedList
+     * 
+     * @return The size of the LinkedList
+     */
     public int size() {
         return length;
     } 
+    
+    /**
+     * Adds data to the front of the linked list and adjusts length
+     * 
+     * @param data The data to be added
+     * @return If adding it was successful
+     */
     public boolean addFront(T data) {
         if(data == null) return false;
         Node<T> node = new Node<>(data);
@@ -91,6 +138,13 @@ public class LinkedList<T> {
         length++;
         return true;
     }
+    
+    /**
+     * Adds data to the back of the linked list and adjusts length
+     * 
+     * @param data The data to be added
+     * @return If adding it was successful
+     */
     public boolean addBack(T data) {
         if(data == null) return false;
         Node<T> node = new Node<>(data);
@@ -103,18 +157,44 @@ public class LinkedList<T> {
         length++;
         return true;
     }
+    
+    /**
+     * Checks if the index value is in the range of the LinkedList
+     * 
+     * @param index The index to check
+     * @return If the index value is in range
+     */
     private boolean inRange(int index) {
         if(isEmpty()) return false;
         if(index < 0) return false;
         if(index >= length) return false;
         return true;
     }
+    
+    /**
+     * Gets the first Node of the LinkedList
+     * 
+     * @return The first Node of the LinkedList
+     */
     protected Node getFirstNode() {
         return head;
     }
+    
+    /**
+     * Gets the last Node of the LinkedList
+     * 
+     * @return The last Node of the LinkedList
+     */
     protected Node getLastNode() {
         return tail;
     }
+    
+    /**
+     * Gets the Node at the spot index in the LinkedList
+     * 
+     * @param index The index of the Node to get
+     * @return The Node at spot index
+     */
     protected Node getNode(int index) {
         if(!inRange(index)) return null;
         if(index == 0) return getFirstNode();
@@ -125,22 +205,55 @@ public class LinkedList<T> {
         }
         return current;
     }
+    
+    /**
+     * Gets the data from the Node at that index
+     * 
+     * @param index The index to get the data from
+     * @return The data at the spot index
+     */
     public T get(int index) {
         if(!inRange(index)) return null;
         return (T)getNode(index).data;
     }
+    
+    /**
+     * Sets the current data of the LinkedList at spot index to the data parameter
+     * 
+     * @param index The index to change
+     * @param data The data to change it to
+     * @return If it was successful
+     */
     public boolean set(int index, T data) {
         Node current = getNode(index);
         if(current == null) return false;
         current.data = data;
         return true;
     }
+    
+    /**
+     * Gets the data from the front of the LinkedList
+     * 
+     * @return The data at the front of the LinkedList
+     */
     public T front() {
         return get(0);
     }
+    
+    /**
+     * Gets the data from the back of the LinkedList
+     * 
+     * @return The data at the back of the LinkedList
+     */
     public T back() {
         return get(length - 1);
     }
+    
+    /**
+     * Removes the Node at the front of the LinkedList
+     * 
+     * @return The data from the deleted Node
+     */
     public T removeFront() {
         if(isEmpty()) return null;
         T data = (T)head.data;
@@ -154,6 +267,12 @@ public class LinkedList<T> {
         }
         return data;
     }
+    
+    /**
+     * Removes the Node at the back of the LinkedList
+     * 
+     * @return The data from the deleted Node
+     */
     public T removeBack() {
         if(isEmpty()) return null;
         else {
@@ -169,6 +288,13 @@ public class LinkedList<T> {
             return data;
         }
     }
+    
+    /**
+     * Checks if the LinkedList contains the data
+     * 
+     * @param data The data to check
+     * @return If the LinkedList contains the data
+     */
     public boolean contains(T data) {
         Node current = head;
         while(current != null) {
@@ -179,6 +305,14 @@ public class LinkedList<T> {
         }
         return false;
     }
+    
+    /**
+     * Adds data after the index value and adjusts the size of the LinkedList
+     *
+     * @param data The data to add 
+     * @param index The index to add it after
+     * @return If it was successful
+     */
     public boolean addAfter(T data, int index) {
         if(data == null) return false;
         if(!inRange(index)) return false;
@@ -194,6 +328,14 @@ public class LinkedList<T> {
         }
         return true;
     }
+    
+    /**
+     * Adds data before the index value and adjusts the size of the LinkedList
+     *
+     * @param data The data to add 
+     * @param index The index to add it before
+     * @return If it was successful
+     */
     public boolean addBefore(T data, int index) {
         if(data == null) return false;
         if(!inRange(index)) return false;
@@ -209,12 +351,34 @@ public class LinkedList<T> {
         }
         return true;
     }
+    
+    /**
+     * Adds data to the back of the LinkedList
+     * 
+     * @param data The data to add
+     * @return If it was successful
+     */
     public boolean add(T data) {
         return addBack(data);
     }
+    
+    /**
+     * Adds data after the index value and adjusts the size of the LinkedList
+     *
+     * @param data The data to add 
+     * @param index The index to add it after
+     * @return If it was successful
+     */
     public boolean add(int index, T data) {
         return addAfter(data, index);
     }
+    
+    /**
+     * Removes the data of the index spot and adjusts size
+     * 
+     * @param index The index to remove
+     * @return The data that was removed
+     */
     public T remove(int index) {
         if(!inRange(index)) return null;
         if(index == 0) return removeFront();
@@ -227,6 +391,13 @@ public class LinkedList<T> {
         System.gc();
         return (T)current.data;
     }
+    
+    /**
+     * Returns the index of the first index
+     * 
+     * @param data
+     * @return 
+     */
     public int firstIndexOf(T data) {
         Node current = head;
         int index = 0;
