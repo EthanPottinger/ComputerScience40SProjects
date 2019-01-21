@@ -105,18 +105,11 @@ public class Cribbage {
                     }
                 }
             }
-            for(int i = 0; i < 2; i++) {
-                String[] options = new String[player2.getHand().size()];
-                for(int j = 0; j < player2.getHand().size(); j++) {
-                    options[j] = player2.getHand().getCard(j).toString();
-                }
-                String choice = GlobalMethods.choose("Choose a card to go into your crib\n\n" + player2.getHand().toString(), "Cribbage Player 2", options);
-                for(int j = 0; j < player2.getHand().size(); j++) {
-                    if(player2.getHand().getCard(j).toString().equals(choice)) {
-                        Card card = player2.getHand().getCard(j);
-                        player2.returnCard(j);
-                        crib.draw(card);
-                    }
+            int choice1;
+            int choice2;
+            for(int i = 0; i < player2.getHand().size(); i++) {
+                for(int j = i + 1; j < player2.getHand().size(); j++) {
+                    
                 }
             }
         }
@@ -129,12 +122,13 @@ public class Cribbage {
         int num = 0;
         if(turn == 1) {
             do {
-                do {
-                    
+                String[] options = new String[player1.getHand().size()];
+                for(int j = 0; j < player1.getHand().size(); j++) {
+                    options[j] = player1.getHand().getCard(j).toString();
                 }
-                while(num <= 31);
+                String choice = GlobalMethods.choose("Choose a card to go into your crib\n\n" + player1.getHand().toString(), "Cribbage Player 1", options);
             }
-            while(player1.getHand().size() != 0 || player2.getHand().size() != 0);
+            while(cards.size() != 8);
         }
         if(turn == 2) {
             
