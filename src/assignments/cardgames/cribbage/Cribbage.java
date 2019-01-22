@@ -75,20 +75,25 @@ public class Cribbage {
                     }
                 }
             }
-            for(int i = 0; i < 2; i++) {
-                String[] options = new String[player2.getHand().size()];
-                for(int j = 0; j < player2.getHand().size(); j++) {
-                    options[j] = player2.getHand().getCard(j).toString();
-                }
-                String choice = GlobalMethods.choose("Choose a card to go into your opponents crib\n\n" + player2.getHand().toString(), "Cribbage Player 2", options);
-                for(int j = 0; j < player2.getHand().size(); j++) {
-                    if(player2.getHand().getCard(j).toString().equals(choice)) {
-                        Card card = player2.getHand().getCard(j);
-                        player2.returnCard(j);
-                        crib.draw(card);
+            Card choice1 = new Card();
+            Card choice2 = new Card();
+            int maxScore = 0;
+            for(int i = 0; i < player2.getHand().size(); i++) {
+                for(int j = i + 1; j < player2.getHand().size(); j++) {
+                    Card card1 = player2.getHand().getCard(i);
+                    Card card2 = player2.getHand().getCard(j);
+                    player2.returnCard(card1);
+                    player2.returnCard(card2);
+                    if(player2.getScore() >= maxScore) {
+                        choice1 = card1;
+                        choice2 = card2;
                     }
+                    player2.draw(card1);
+                    player2.draw(card2);
                 }
             }
+            player2.returnCard(choice1);
+            player2.returnCard(choice2);
         }
         if(turn == 2) {
             for(int i = 0; i < 2; i++) {
@@ -105,13 +110,25 @@ public class Cribbage {
                     }
                 }
             }
-            int choice1;
-            int choice2;
+            Card choice1 = new Card();
+            Card choice2 = new Card();
+            int maxScore = 0;
             for(int i = 0; i < player2.getHand().size(); i++) {
                 for(int j = i + 1; j < player2.getHand().size(); j++) {
-                    
+                    Card card1 = player2.getHand().getCard(i);
+                    Card card2 = player2.getHand().getCard(j);
+                    player2.returnCard(card1);
+                    player2.returnCard(card2);
+                    if(player2.getScore() >= maxScore) {
+                        choice1 = card1;
+                        choice2 = card2;
+                    }
+                    player2.draw(card1);
+                    player2.draw(card2);
                 }
             }
+            player2.returnCard(choice1);
+            player2.returnCard(choice2);
         }
     }
     public void getCutCard() {
@@ -127,12 +144,43 @@ public class Cribbage {
                     options[j] = player1.getHand().getCard(j).toString();
                 }
                 String choice = GlobalMethods.choose("Choose a card to go into your crib\n\n" + player1.getHand().toString(), "Cribbage Player 1", options);
+                for(int j = 0; j < player1.getHand().size(); j++) {
+                    if(player1.getHand().getCard(j).toString().equals(choice)) {
+                        Card card = player1.getHand().getCard(j);
+                        player1.returnCard(j);
+                        crib.draw(card);
+                    }
+                }
             }
             while(cards.size() != 8);
         }
         if(turn == 2) {
             
         }
+    }
+    
+    /**
+     * Counts the points earned from runs in pegging
+     * 
+     * @param cards The sublist for the cards being played
+     * @return The amount of points gotten
+     */
+    public int getPegRun(LinkedList<Card> cards) {
+        int score = 0;
+        for (int i = 3; i <= cards.size(); i++) {
+            int[] array = new int[i];
+            for(int j = cards.size() - 1; j >= 0; j++) {
+                array[i] = player2.getHand().getCard(j).value();
+            }
+            array = GlobalMethods.sort(array);
+            int run = 1;
+            for(int j = 0; j < array.length - 1; j++) {
+                if(array[j] + 1 == array[j + 1]) run++;
+                else run = 1;
+            }
+            if(run >= 3) score = run;
+        }
+        return score;
     }
  
 }

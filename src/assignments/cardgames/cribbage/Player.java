@@ -53,6 +53,9 @@ public class Player {
             hand.returnCard(0);
         }
     }
+    public void returnCard(Card card) {
+        hand.returnCard(card);
+    }
     public int getScore() {
         return countPairs()*2 + runScore() + countFifteens()*2 + flush();
     }
