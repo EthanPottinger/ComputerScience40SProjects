@@ -13,25 +13,21 @@ import collections.*;
 public class Cribbage {
 
     private Player player1;
-    private Player player2;
+    public Player player2;
     
     private Hand crib;
     
     private Card cut;
     
-    private int turn;
+    private  int turn;
     
-    private boolean autoCount;
-    private boolean muggins;
             
-    public Cribbage(boolean autoCount, boolean muggins) {
+    public Cribbage() {
         player1 = new Player();
         player2 = new Player();
         crib = new Hand();
         cut = new Card();
-        autoCount = this.autoCount;
-        if(autoCount) muggins = this.muggins;
-        else muggins = false;
+        turn = 1;
     }
     
     public void play() {
@@ -49,15 +45,42 @@ public class Cribbage {
     public int cut() {
         Card p1Card = Hand.deck.drawRandom();
         Card p2Card = Hand.deck.drawRandom();
-        if(p1Card.value() > p2Card.value()) return 1;
-        if(p2Card.value() > p1Card.value()) return 2;
-        else return 0;
+        GlobalMethods.output("Player 1 drew " + p1Card.toString() + "\n\nAnd "
+                + "player 2 drew " + p2Card.toString());
+        if(p1Card.value() < p2Card.value()) {
+            GlobalMethods.output("Player 1 wins the deal!");
+            Hand.deck.returnCard(p2Card);
+            Hand.deck.returnCard(p1Card);
+            return 1;
+            
+        }
+        if(p2Card.value() < p1Card.value()) {
+            GlobalMethods.output("Player 2 wins the deal!");
+            Hand.deck.returnCard(p2Card);
+            Hand.deck.returnCard(p1Card);
+            return 2;
+        }
+        else {
+            Hand.deck.returnCard(p2Card);
+            Hand.deck.returnCard(p1Card);
+            return 0;
+        }
     }
     public void deal() {
-        for(int i = 0; i < 6; i++) {
+        if(turn == 1) {
+            for(int i = 0; i < 6; i++) {
             player2.draw();
             player1.draw();
+            }
         }
+        if(turn == 2) {
+            for(int i = 0; i < 6; i++) {
+            player1.draw();
+            player2.draw();
+            }
+        }
+        System.out.println(player1.getHand().toString());
+        System.out.println(player2.getHand().toString());
     }
     public void chooseCards() {
         if(turn == 1) {
@@ -87,6 +110,7 @@ public class Cribbage {
                     if(player2.getScore() >= maxScore) {
                         choice1 = card1;
                         choice2 = card2;
+                        maxScore = player2.getScore();
                     }
                     player2.draw(card1);
                     player2.draw(card2);
@@ -122,6 +146,7 @@ public class Cribbage {
                     if(player2.getScore() >= maxScore) {
                         choice1 = card1;
                         choice2 = card2;
+                        maxScore = player2.getScore();
                     }
                     player2.draw(card1);
                     player2.draw(card2);

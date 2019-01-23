@@ -594,10 +594,10 @@ public class LinkedList<T> {
     }
     
     /**
+     * Takes data and returns an array of all indices where the data occurs
      * 
-     * 
-     * @param data
-     * @return 
+     * @param data The data to find
+     * @return An array of all the indices where the data is found
      */
     public int[] addIndices(T data) {
         if(data == null) return null;

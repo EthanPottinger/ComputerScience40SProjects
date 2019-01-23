@@ -38,11 +38,6 @@ public class Player {
     public void returnCard(int index) {
         hand.returnCard(index);
     }
-    public Card giveCard(Player player, Card card) {
-        hand.returnCard(card);
-        player.draw(card);
-        return card;
-    }
     public Card giveCard(Hand hand, Card card) {
         this.hand.returnCard(card);
         hand.draw(card);
@@ -130,7 +125,6 @@ public class Player {
                 if(card2 > 10) card2 = 10;
                 if(card1 + card2 == 15){
                     fifteens++;
-                    System.out.println(hand.getCard(i) + ", " + hand.getCard(j));
                 }
             }
         }
@@ -149,7 +143,6 @@ public class Player {
                     if(card3 > 10) card3 = 10;
                     if(card1 + card2 + card3 == 15){
                         fifteens++;
-                        System.out.println(hand.getCard(i) + ", " + hand.getCard(j) + ", " + hand.getCard(k));
                     }
                 }    
             }
@@ -171,9 +164,7 @@ public class Player {
                         if(card3 > 10) card3 = 10;
                         if(card4 > 10) card4 = 10;
                         if(card1 + card2 + card3 + card4 == 15){
-                            fifteens++;
-                            System.out.println(hand.getCard(i) + ", " + hand.getCard(j) + ", " + hand.getCard(k) + ", " + hand.getCard(l));
-                        }
+                            fifteens++;                        }
                     } 
                 }  
             }
@@ -199,9 +190,7 @@ public class Player {
                             if(card4 > 10) card4 = 10;
                             if(card5 > 10) card5 = 10;
                             if(card1 + card2 + card3 + card4 + card5 == 15) {
-                                fifteens++;
-                                System.out.println(hand.getCard(i) + ", " + hand.getCard(j) + ", " + hand.getCard(k) + ", " + hand.getCard(l) + ", " + hand.getCard(m));
-                            }
+                                fifteens++;                            }
                         } 
                     } 
                 }  

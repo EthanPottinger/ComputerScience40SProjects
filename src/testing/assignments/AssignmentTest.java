@@ -13,8 +13,10 @@ import globalmethods.GlobalMethods;
 public class AssignmentTest {
 
     public AssignmentTest() {
-        Cribbage crib = new Cribbage(false, false);
-        crib.play();
+        Cribbage crib = new Cribbage();
+        crib.cut();
+        crib.deal();
+        crib.chooseCards();
     }
     
 }
