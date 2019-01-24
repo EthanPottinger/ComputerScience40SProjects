@@ -17,6 +17,8 @@ public class AssignmentTest {
         crib.cut();
         crib.deal();
         crib.chooseCards();
+        crib.getCutCard();
+        crib.pegging();
     }
     
 }

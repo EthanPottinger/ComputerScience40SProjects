@@ -51,6 +51,10 @@ public class Card {
     public int value() {
         return value;
     }
+    public int valueWithFaces10() {
+        if(type.equals(TYPES[10]) || type.equals(TYPES[11]) || type.equals(TYPES[12])) return 10;
+        else return value;
+    }
     public String suit() {
         return suit;
     }
